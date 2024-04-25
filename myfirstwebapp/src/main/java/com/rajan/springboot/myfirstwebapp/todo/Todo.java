@@ -2,12 +2,20 @@ package com.rajan.springboot.myfirstwebapp.todo;
 
 import java.time.LocalDate;
 
+// import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 // Database (MySql)
 // static list of todos => Database (H2, MYSQL)
 
+@Entity
 public class Todo {
+  public Todo() {
+
+  }
 
   public Todo(int id, String username, String description, LocalDate targetDate, boolean isDone) {
     this.id = id;
@@ -18,7 +26,11 @@ public class Todo {
     this.isDone = isDone;
   }
 
+  @Id
+  @GeneratedValue
   private int id;
+
+  // @Column(name = "name")
   private String username;
 
   @Size(min = 10, message = "Description must be at least 10 characters long")
